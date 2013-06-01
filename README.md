@@ -14,4 +14,4 @@ locations.
 Enjoy!
 
 
-Contributors: Connor Anderson and Tom Camenzind.
+Contributors: Connor Anderson and Tom Camenzind. Stanford University.
