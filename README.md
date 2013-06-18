@@ -11,7 +11,10 @@ their door has been unlocked or incorrectly attempted 3 or more times. Username 
 fields should be filled in with a working gmail account and password in the respective
 locations.
 
-Enjoy!
+In addition, we are in the process of adding photo-verification and RFID functionality. The automated photo capture will
+send a photo of the entering person as an attachment to the previously described email and the RFID will give more 
+information about who enters the room.
 
+Enjoy!
 
 Contributors: Connor Anderson and Tom Camenzind. Stanford University.
