@@ -18,3 +18,5 @@ information about who enters the room.
 Enjoy!
 
 Contributors: Connor Anderson and Tom Camenzind. Stanford University.
+
+Special thanks to Steve Hoefer.
