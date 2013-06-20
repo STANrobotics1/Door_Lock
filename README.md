@@ -19,4 +19,4 @@ Enjoy!
 
 Contributors: Connor Anderson and Tom Camenzind. Stanford University.
 
-Special thanks to Steve Hoefer.
+Special thanks to Steve Hoefer (http://grathio.com).
