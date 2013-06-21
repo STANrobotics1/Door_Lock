@@ -5,7 +5,7 @@ and switching it to digital, with the help of an LM339 comparator.
 
 Note:
 DigitalTest.ino uses DigitalReadFast, implemented from the following library:
-https://code.google.com/p/digitalwritefast/downloads/list
+https://code.google.com/p/digitalwritefast/downloads/list    (digitalReadFast() is approximately 40 times faster than digitalRead().)
 
 Thanks to Paul Stoffregen for developing this library!
 
