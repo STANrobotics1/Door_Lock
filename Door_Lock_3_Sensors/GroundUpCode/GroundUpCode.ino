@@ -23,9 +23,12 @@ void setup() {
   Serial.begin(9600);                     // Uncomment the Serial.bla lines for debugging.
   Serial.println("Program start.");
   start = micros();       // but feel free to comment them out after it's working right.
+
 }
 
 void loop() {
+
+  
   // Listen for any knock at all.
 
   while(true) {
@@ -59,7 +62,7 @@ void loop() {
 }
 
 void checkSensor1() {
-  endPrint += "1\n";
+  endprint += "1\n";
   reach1=micros();
   while (true) {
     // waits for either of the other two sensors to get the knock
@@ -67,13 +70,13 @@ void checkSensor1() {
     knockSensorValue3 = digitalReadFast(knockSensor3);
     // conditions for if sensor 2 is first
     if(knockSensorValue2!=0) {
-      endPrint += "2\n";
+      endprint += "2\n";
       reach2=micros();
       // waits for the final sensor to receive knock
       while (true) {
         knockSensorValue3 = digitalReadFast(knockSensor3);
         if(knockSensorValue3!=0) {
-          endPrint += "3\n";
+          endprint += "3\n";
           reach3=micros();
           sequenceCompleted = true;
           break;
@@ -82,13 +85,13 @@ void checkSensor1() {
     }
     // conditions for if sensor 3 is first
     if(knockSensorValue3!=0) {
-      endPrint += "3\n";
+      endprint += "3\n";
       reach3=micros();
       // waits for the final sensor to receive knock 
       while (true) {
         knockSensorValue2 = digitalReadFast(knockSensor2);
         if(knockSensorValue2!=0) {
-          endPrint += "2\n";
+          endprint += "2\n";
           reach2=micros();
           sequenceCompleted = true;
           break;
@@ -101,18 +104,18 @@ void checkSensor1() {
 }
 
 void checkSensor2() {
-  endPrint += "2\n";
+  endprint += "2\n";
   reach2=micros();
   while (true) {
     knockSensorValue1 = digitalReadFast(knockSensor1);
     knockSensorValue3 = digitalReadFast(knockSensor3);
     if(knockSensorValue1!=0) {
-      endPrint += "1\n";
+      endprint += "1\n";
       reach1=micros();
       while (true) {
         knockSensorValue3 = digitalReadFast(knockSensor3);
         if(knockSensorValue3!=0) {
-          endPrint += "3\n";
+          endprint += "3\n";
           reach3=micros();
           sequenceCompleted = true;
           break;
@@ -120,12 +123,12 @@ void checkSensor2() {
       }
     }
     if(knockSensorValue3!=0) {
-      endPrint += "3\n";
+      endprint += "3\n";
       reach3=micros();
       while (true) {
         knockSensorValue1 = digitalReadFast(knockSensor1);
         if(knockSensorValue1!=0) {
-          endPrint += "1\n";
+          endprint += "1\n";
           reach1=micros();
           sequenceCompleted = true;
           break;
@@ -137,18 +140,18 @@ void checkSensor2() {
 }
 
 void checkSensor3() {
-  endPrint += "3\n";
+  endprint += "3\n";
   reach3=micros();
   while (true) {
     knockSensorValue1 = digitalReadFast(knockSensor1);
     knockSensorValue2 = digitalReadFast(knockSensor2);
     if(knockSensorValue1!=0) {
-      endPrint += "1\n";
+      endprint += "1\n";
       reach1=micros();
       while (true) {
         knockSensorValue2 = digitalReadFast(knockSensor2);
         if(knockSensorValue2!=0) {
-          endPrint += "2\n";
+          endprint += "2\n";
           reach2=micros();
           sequenceCompleted = true;
           break;
@@ -156,12 +159,12 @@ void checkSensor3() {
       }
     }
     if(knockSensorValue2!=0) {
-      endPrint += "2\n";
+      endprint += "2\n";
       reach2=micros();
       while (true) {
         knockSensorValue1 = digitalReadFast(knockSensor1);
         if(knockSensorValue1!=0) {
-          endPrint += "1\n";
+          endprint += "1\n";
           reach1=micros();
           sequenceCompleted = true;
           break;

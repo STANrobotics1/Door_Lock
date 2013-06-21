@@ -1,9 +1,9 @@
 #include <digitalWriteFast.h>
 
 // Pin definitions
-const int knockSensor1 = 51; 
-const int knockSensor2 = 52; 
-const int knockSensor3 = 53;         // Piezo sensor on pin 0.
+const int knockSensor1 = 11; 
+const int knockSensor2 = 12; 
+const int knockSensor3 = 13;         // Piezo sensor on pin 0.
 
 int knockSensorValue1 = 0;
 int knockSensorValue2 = 0;
@@ -17,6 +17,9 @@ String endPrint = "";
 
 
 void setup() {
+  pinModeFast(knockSensor1, INPUT);
+  pinModeFast(knockSensor2, INPUT);
+  pinModeFast(knockSensor3, INPUT);
   Serial.begin(9600);                     // Uncomment the Serial.bla lines for debugging.
   Serial.println("Program start.");
   start = micros();       // but feel free to comment them out after it's working right.
@@ -29,7 +32,8 @@ void loop() {
   while(true) {
   knockSensorValue1 = digitalReadFast(knockSensor1);
     if(knockSensorValue1!=0) {
-      endprint += "1\n";
+      Serial.println("1");
+      endPrint += "1\n";
       reach1=micros();
       break;
     }
@@ -37,7 +41,8 @@ void loop() {
   while(true) {
   knockSensorValue2 = digitalReadFast(knockSensor2);
     if(knockSensorValue2!=0) {
-      endprint += "2\n";
+      Serial.println("2");
+      endPrint += "2\n";
       reach2=micros();
       break;
     }
@@ -45,7 +50,8 @@ void loop() {
   while(true) {
   knockSensorValue3 = digitalReadFast(knockSensor3);
     if(knockSensorValue3!=0) {
-      endprint += "3\n";
+      Serial.println("3");
+      endPrint += "3\n";
       reach3=micros();
       break;
     }
