@@ -2,6 +2,13 @@
 
 // Allows for any ordering of incoming knocks. Doesn't force ordering.
 
+/* Current code outputs the ordering of knocks. This allows for forced ordering and
+* is useful if sensors are aligned and tested for a known knock location.
+* Also, the time intervals between knocks seen here can be used to calibrate
+* the speed of sound in whatever surface the door is made out of.
+* Still trying to incorporate readDigitalFast() for greater resolution.
+*/
+
 // Pin definitions
 const int knockSensor1 = 51; 
 const int knockSensor2 = 52; 

@@ -1,9 +1,9 @@
 #include <digitalWriteFast.h>
 
 // Pin definitions
-const int knockSensor1 = 11; 
-const int knockSensor2 = 12; 
-const int knockSensor3 = 13;
+int knockSensor1 = 51; 
+int knockSensor2 = 52; 
+int knockSensor3 = 53;
 
 int knockSensorValue1 = 0;
 int knockSensorValue2 = 0;
@@ -17,9 +17,9 @@ String endPrint = "";
 
 
 void setup() {
-  pinModeFast(knockSensor1, INPUT);
-  pinModeFast(knockSensor2, INPUT);
-  pinModeFast(knockSensor3, INPUT);
+  pinMode(knockSensor1, INPUT);
+  pinMode(knockSensor2, INPUT);
+  pinMode(knockSensor3, INPUT);
   Serial.begin(9600);                     
   Serial.println("Program start.");
   start = micros();    
@@ -30,13 +30,13 @@ void loop() {
   // Listen for any knock at all.
 
 
-  knockSensorValue1 = digitalReadFast(knockSensor1);
+  knockSensorValue1 = digitalRead(knockSensor1);
 
 
-  knockSensorValue2 = digitalReadFast(knockSensor2);
+  knockSensorValue2 = digitalRead(knockSensor2);
 
 
-  knockSensorValue3 = digitalReadFast(knockSensor3);
+  knockSensorValue3 = digitalRead(knockSensor3);
 
   if(knockSensorValue1 == 1 ){
   Serial.println("Sensor 1 ");
