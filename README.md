@@ -6,7 +6,7 @@ based on the locations of three piezo sensors.
 
 THIS CODE IS CURRENTLY UNDER REVISIONS AND IS NOT COMPLETE.
 
-When complete, 'lockserial.py' will allow for a user to be notified any time
+When complete, 'lockserial.py' (removed until complete) will allow for a user to be notified any time
 their door has been unlocked or incorrectly attempted 3 or more times. Username and password
 fields should be filled in with a working gmail account and password in the respective
 locations.
