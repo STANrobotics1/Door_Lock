@@ -17,6 +17,8 @@
    Update: Nov 20 09: Updated handling of programming button to make it more intuitive, give better feedback.
    Update: Jan 20 10: Removed the "pinMode(knockSensor, OUTPUT);" line since it makes no sense and doesn't do anything.
  */
+#include <Servo.h> 
+
  
 // Pin definitions
 const int knockSensor = 0;         // Piezo sensor on pin 0.
@@ -44,11 +46,22 @@ int knockReadings[maximumKnocks];   // When someone knocks this array fills with
 int knockSensorValue = 0;           // Last reading of the knock sensor.
 int programButtonPressed = false;   // Flag so we remember the programming button setting at the end of the cycle.
 
+Servo myservo;
+
+int Pin0 = 9; 
+int Pin1 = 10; 
+int Pin2 = 11; 
+int Pin3 = 12; 
+int fullRotation = 510;
+
 void setup() {
   pinMode(lockMotor, OUTPUT);
   pinMode(redLED, OUTPUT);
   pinMode(greenLED, OUTPUT);
   pinMode(programSwitch, INPUT);
+  
+  myservo.attach(7);
+  myservo.write(90);  // Starting Position
   
   Serial.begin(9600);               			// Uncomment the Serial.bla lines for debugging.
   Serial.println("Program start.");  			// but feel free to comment them out after it's working right.
@@ -162,12 +175,14 @@ void triggerDoorUnlock(){
   int i=0;
   
   // turn the motor on for a bit.
-  digitalWrite(lockMotor, HIGH);
+  myservo.write(180);
+
   digitalWrite(greenLED, HIGH);            // And the green LED too.
   
   delay (lockTurnTime);                    // Wait a bit.
   
-  digitalWrite(lockMotor, LOW);            // Turn the motor off.
+  myservo.write(90);
+
   
   // Blink the green LED a few times for more visual feedback.
   for (i=0; i < 5; i++){   
@@ -256,4 +271,135 @@ boolean validateKnock(){
   return true;
   
 }
+
+void stepperStep(int num, boolean dir) {
+  for(int i = 0; i < num; i++) {
+    if(dir == true) {
+      for(int numStep = 0; numStep <=7; numStep++) {
+           switch(numStep){ 
+           case 0: 
+             digitalWrite(Pin0, LOW);  
+             digitalWrite(Pin1, LOW); 
+             digitalWrite(Pin2, LOW); 
+             digitalWrite(Pin3, HIGH); 
+           break;  
+           case 1: 
+             digitalWrite(Pin0, LOW);  
+             digitalWrite(Pin1, LOW); 
+             digitalWrite(Pin2, HIGH); 
+             digitalWrite(Pin3, HIGH); 
+           break;  
+           case 2: 
+             digitalWrite(Pin0, LOW);  
+             digitalWrite(Pin1, LOW); 
+             digitalWrite(Pin2, HIGH); 
+             digitalWrite(Pin3, LOW); 
+           break;  
+           case 3: 
+             digitalWrite(Pin0, LOW);  
+             digitalWrite(Pin1, HIGH); 
+             digitalWrite(Pin2, HIGH); 
+             digitalWrite(Pin3, LOW); 
+           break;  
+           case 4: 
+             digitalWrite(Pin0, LOW);  
+             digitalWrite(Pin1, HIGH); 
+             digitalWrite(Pin2, LOW); 
+             digitalWrite(Pin3, LOW); 
+           break;  
+           case 5: 
+             digitalWrite(Pin0, HIGH);  
+             digitalWrite(Pin1, HIGH); 
+             digitalWrite(Pin2, LOW); 
+             digitalWrite(Pin3, LOW); 
+           break;  
+             case 6: 
+             digitalWrite(Pin0, HIGH);  
+             digitalWrite(Pin1, LOW); 
+             digitalWrite(Pin2, LOW); 
+             digitalWrite(Pin3, LOW); 
+           break;  
+           case 7: 
+             digitalWrite(Pin0, HIGH);  
+             digitalWrite(Pin1, LOW); 
+             digitalWrite(Pin2, LOW); 
+             digitalWrite(Pin3, HIGH); 
+           break;  
+           default: 
+             digitalWrite(Pin0, LOW);  
+             digitalWrite(Pin1, LOW); 
+             digitalWrite(Pin2, LOW); 
+             digitalWrite(Pin3, LOW); 
+           break;  
+         } 
+         delayMicroseconds(1200);
+        }
+      }
+      
+      else if(dir == false) {
+      for(int numStep = 7; numStep >= 0; numStep--) {
+           switch(numStep){ 
+           case 0: 
+             digitalWrite(Pin0, LOW);  
+             digitalWrite(Pin1, LOW); 
+             digitalWrite(Pin2, LOW); 
+             digitalWrite(Pin3, HIGH); 
+           break;  
+           case 1: 
+             digitalWrite(Pin0, LOW);  
+             digitalWrite(Pin1, LOW); 
+             digitalWrite(Pin2, HIGH); 
+             digitalWrite(Pin3, HIGH); 
+           break;  
+           case 2: 
+             digitalWrite(Pin0, LOW);  
+             digitalWrite(Pin1, LOW); 
+             digitalWrite(Pin2, HIGH); 
+             digitalWrite(Pin3, LOW); 
+           break;  
+           case 3: 
+             digitalWrite(Pin0, LOW);  
+             digitalWrite(Pin1, HIGH); 
+             digitalWrite(Pin2, HIGH); 
+             digitalWrite(Pin3, LOW); 
+           break;  
+           case 4: 
+             digitalWrite(Pin0, LOW);  
+             digitalWrite(Pin1, HIGH); 
+             digitalWrite(Pin2, LOW); 
+             digitalWrite(Pin3, LOW); 
+           break;  
+           case 5: 
+             digitalWrite(Pin0, HIGH);  
+             digitalWrite(Pin1, HIGH); 
+             digitalWrite(Pin2, LOW); 
+             digitalWrite(Pin3, LOW); 
+           break;  
+             case 6: 
+             digitalWrite(Pin0, HIGH);  
+             digitalWrite(Pin1, LOW); 
+             digitalWrite(Pin2, LOW); 
+             digitalWrite(Pin3, LOW); 
+           break;  
+           case 7: 
+             digitalWrite(Pin0, HIGH);  
+             digitalWrite(Pin1, LOW); 
+             digitalWrite(Pin2, LOW); 
+             digitalWrite(Pin3, HIGH); 
+           break;  
+           default: 
+             digitalWrite(Pin0, LOW);  
+             digitalWrite(Pin1, LOW); 
+             digitalWrite(Pin2, LOW); 
+             digitalWrite(Pin3, LOW); 
+           break;  
+         } 
+         delayMicroseconds(1200);
+      }
+    }
+  }
+}
+
+
+
 

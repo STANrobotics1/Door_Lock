@@ -1,9 +1,9 @@
 #include <digitalWriteFast.h>
 
 // Pin definitions
-int knockSensor1 = 51; 
-int knockSensor2 = 52; 
-int knockSensor3 = 53;
+int knockSensor1 = 2; 
+int knockSensor2 = 3; 
+int knockSensor3 = 21;
 
 int knockSensorValue1 = 0;
 int knockSensorValue2 = 0;
